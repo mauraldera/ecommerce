@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { assignInput } from './actions'
 class Navbar extends Component {
     constructor(props){
         super(props)
@@ -12,7 +15,7 @@ class Navbar extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-3 col-xs-2">
-                        <div id="fh5co-logo"><Link to="/">Merch Link in bio.</Link></div>
+                        <div id="fh5co-logo"><Link to="/">Mauras' Essentials</Link></div>
                     </div>
                     <div className="col-md-6 col-xs-6 text-center menu-1">
                         <ul>
@@ -41,7 +44,7 @@ class Navbar extends Component {
                         <ul>
                             <li className="search">
                                 <div className="input-group">
-                                  <input type="text" placeholder="Search.." />
+                                  <input type="text" placeholder="Search.." required="" onChange={(e) => this.props.assignInput(e.target.value)} />
                                   <span className="input-group-btn">
                                     <button className="btn btn-primary" type="button"><i className="icon-search"></i></button>
                                   </span>
@@ -59,4 +62,16 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+    return {
+  
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      assignInput: (input) => dispatch(assignInput(input))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
